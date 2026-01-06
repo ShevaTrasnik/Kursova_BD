@@ -43,6 +43,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnViewRecipe = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,20 +53,21 @@
             // 
             this.dataGridProducts.AllowUserToAddRows = false;
             this.dataGridProducts.AllowUserToDeleteRows = false;
+            this.dataGridProducts.AllowUserToOrderColumns = true;
             this.dataGridProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProducts.Location = new System.Drawing.Point(13, 50);
             this.dataGridProducts.MultiSelect = false;
             this.dataGridProducts.Name = "dataGridProducts";
             this.dataGridProducts.ReadOnly = true;
             this.dataGridProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridProducts.Size = new System.Drawing.Size(657, 252);
+            this.dataGridProducts.Size = new System.Drawing.Size(512, 252);
             this.dataGridProducts.TabIndex = 0;
             this.dataGridProducts.UseWaitCursor = true;
             this.dataGridProducts.SelectionChanged += new System.EventHandler(this.dataGridProducts_SelectionChanged_1);
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(13, 13);
+            this.btnAddProduct.Location = new System.Drawing.Point(382, 330);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(154, 23);
             this.btnAddProduct.TabIndex = 1;
@@ -74,7 +78,7 @@
             // 
             // btnEditProduct
             // 
-            this.btnEditProduct.Location = new System.Drawing.Point(190, 13);
+            this.btnEditProduct.Location = new System.Drawing.Point(382, 376);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(154, 23);
             this.btnEditProduct.TabIndex = 2;
@@ -85,7 +89,7 @@
             // 
             // btnDeleteProduct
             // 
-            this.btnDeleteProduct.Location = new System.Drawing.Point(371, 13);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(382, 422);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(154, 23);
             this.btnDeleteProduct.TabIndex = 3;
@@ -116,7 +120,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(200, 314);
+            this.label2.Location = new System.Drawing.Point(13, 362);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 6;
@@ -125,7 +129,7 @@
             // 
             // txtCategory
             // 
-            this.txtCategory.Location = new System.Drawing.Point(203, 333);
+            this.txtCategory.Location = new System.Drawing.Point(12, 378);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.ReadOnly = true;
             this.txtCategory.Size = new System.Drawing.Size(154, 20);
@@ -173,7 +177,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(419, 314);
+            this.label5.Location = new System.Drawing.Point(200, 317);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 12;
@@ -182,7 +186,7 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(422, 333);
+            this.txtDescription.Location = new System.Drawing.Point(203, 333);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
@@ -192,7 +196,7 @@
             // 
             // btnViewRecipe
             // 
-            this.btnViewRecipe.Location = new System.Drawing.Point(422, 421);
+            this.btnViewRecipe.Location = new System.Drawing.Point(12, 460);
             this.btnViewRecipe.Name = "btnViewRecipe";
             this.btnViewRecipe.Size = new System.Drawing.Size(173, 23);
             this.btnViewRecipe.TabIndex = 14;
@@ -201,12 +205,42 @@
             this.btnViewRecipe.UseWaitCursor = true;
             this.btnViewRecipe.Click += new System.EventHandler(this.btnViewRecipe_Click);
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(203, 12);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(154, 20);
+            this.txtSearch.TabIndex = 15;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(382, 9);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(99, 23);
+            this.btnSearch.TabIndex = 16;
+            this.btnSearch.Text = "Шукати";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnClearSearch
+            // 
+            this.btnClearSearch.Location = new System.Drawing.Point(110, 9);
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnClearSearch.TabIndex = 17;
+            this.btnClearSearch.Text = "Очистити";
+            this.btnClearSearch.UseVisualStyleBackColor = true;
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(800, 471);
+            this.ClientSize = new System.Drawing.Size(800, 495);
+            this.Controls.Add(this.btnClearSearch);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnViewRecipe);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label5);
@@ -249,6 +283,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Button btnViewRecipe;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnClearSearch;
     }
 }
 
