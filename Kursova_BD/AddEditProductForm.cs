@@ -111,12 +111,6 @@ namespace Kursova_BD
             cbUnit.Items.Clear();
 
             cbUnit.Items.Add("г");
-            cbUnit.Items.Add("кг");
-            cbUnit.Items.Add("мл");
-            cbUnit.Items.Add("л");
-            cbUnit.Items.Add("шт");
-            cbUnit.Items.Add("уп");
-
             cbUnit.SelectedIndex = 0;
         }
 

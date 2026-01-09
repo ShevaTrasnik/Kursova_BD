@@ -20,6 +20,9 @@ namespace Kursova_BD
         private MySqlConnection conn;
         private MySqlDataAdapter _adapter;
         private DataTable _table;
+        private int? _filterCategoryId = null;
+        private decimal? _filterMinWeight = null;
+        private decimal? _filterMaxWeight = null;
         public MainForm()
         {
             InitializeComponent();
@@ -175,13 +178,17 @@ namespace Kursova_BD
                 );
             }
         }
-
-
         private void btnViewRecipe_Click(object sender, EventArgs e)
         {
+            int productId = Convert.ToInt32(
+                dataGridProducts.CurrentRow.Cells["product_id"].Value);
 
+            string productName =
+                dataGridProducts.CurrentRow.Cells["product_name"].Value.ToString();
+
+            var form = new RecipeViewForm(_cs, productId, productName);
+            form.ShowDialog();
         }
-
         private void dataGridProducts_SelectionChanged_1(object sender, EventArgs e)
         {
             if (dataGridProducts.CurrentRow == null)
@@ -205,12 +212,120 @@ namespace Kursova_BD
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadProducts(txtSearch.Text.Trim());
+            string search = txtSearch.Text.Trim().ToLower();
+
+            foreach (DataGridViewRow row in dataGridProducts.Rows)
+            {
+                if (row.IsNewRow) continue;
+                string productName = row.Cells["product_name"].Value
+                    ?.ToString().ToLower() ?? "";
+                string categoryName = row.Cells["category_name"].Value
+                    ?.ToString().ToLower() ?? "";
+                if (string.IsNullOrEmpty(search))
+                {
+                    row.DefaultCellStyle.BackColor = Color.White;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                }
+                else if (
+                    productName.Contains(search) ||
+                    categoryName.Contains(search)
+                )
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightCoral;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
         }
+
+
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
             LoadProducts();
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            var form = new FilterProductsForm(
+                _cs,
+                _filterCategoryId,
+                _filterMinWeight,
+                _filterMaxWeight
+            );
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                _filterCategoryId = form.CategoryId;
+                _filterMinWeight = form.MinWeight;
+                _filterMaxWeight = form.MaxWeight;
+
+                ApplyFilter(
+                    _filterCategoryId,
+                    _filterMinWeight,
+                    _filterMaxWeight
+                );
+            }
+        }
+        private void btnClearFilter_Click(object sender, EventArgs e)
+        {
+            LoadProducts();
+            _filterCategoryId = null;
+            _filterMinWeight = null;
+            _filterMaxWeight = null;
+        }
+        private void ApplyFilter(int? categoryId, decimal? minWeight, decimal? maxWeight)
+        {
+            string sql = @"
+        SELECT 
+            p.product_id,
+            p.name AS product_name,
+            c.name AS category_name,
+            p.category_id,
+            p.weight,
+            p.unit,
+            p.description,
+            p.created_at
+        FROM bakery_products p
+        JOIN categories c ON p.category_id = c.category_id
+        WHERE 1=1";
+            using (var conn = new MySqlConnection(_cs))
+            {
+                conn.Open();
+                var cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                if (categoryId.HasValue)
+                {
+                    sql += " AND p.category_id = @cat";
+                    cmd.Parameters.AddWithValue("@cat", categoryId.Value);
+                }
+                if (minWeight.HasValue)
+                {
+                    sql += " AND p.weight >= @min";
+                    cmd.Parameters.AddWithValue("@min", minWeight.Value);
+                }
+                if (maxWeight.HasValue)
+                {
+                    sql += " AND p.weight <= @max";
+                    cmd.Parameters.AddWithValue("@max", maxWeight.Value);
+                }
+                sql += " ORDER BY p.name";
+                cmd.CommandText = sql;
+                var adapter = new MySqlDataAdapter(cmd);
+                var table = new DataTable();
+                adapter.Fill(table);
+                dataGridProducts.DataSource = table;
+            }
+        }
+
+        private void btnIngredients_Click(object sender, EventArgs e)
+        {
+            var form = new IngredientsForm(_cs);
+            form.ShowDialog();
         }
     }
 }

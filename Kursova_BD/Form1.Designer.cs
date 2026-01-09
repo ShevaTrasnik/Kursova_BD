@@ -46,6 +46,9 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClearSearch = new System.Windows.Forms.Button();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.btnClearFilter = new System.Windows.Forms.Button();
+            this.btnIngredients = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +62,7 @@
             this.dataGridProducts.MultiSelect = false;
             this.dataGridProducts.Name = "dataGridProducts";
             this.dataGridProducts.ReadOnly = true;
-            this.dataGridProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridProducts.Size = new System.Drawing.Size(512, 252);
             this.dataGridProducts.TabIndex = 0;
             this.dataGridProducts.UseWaitCursor = true;
@@ -78,7 +81,7 @@
             // 
             // btnEditProduct
             // 
-            this.btnEditProduct.Location = new System.Drawing.Point(382, 376);
+            this.btnEditProduct.Location = new System.Drawing.Point(382, 425);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(154, 23);
             this.btnEditProduct.TabIndex = 2;
@@ -89,7 +92,7 @@
             // 
             // btnDeleteProduct
             // 
-            this.btnDeleteProduct.Location = new System.Drawing.Point(382, 422);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(382, 376);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(154, 23);
             this.btnDeleteProduct.TabIndex = 3;
@@ -190,7 +193,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size(173, 65);
+            this.txtDescription.Size = new System.Drawing.Size(154, 65);
             this.txtDescription.TabIndex = 13;
             this.txtDescription.UseWaitCursor = true;
             // 
@@ -211,6 +214,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(154, 20);
             this.txtSearch.TabIndex = 15;
+            this.txtSearch.UseWaitCursor = true;
             // 
             // btnSearch
             // 
@@ -220,6 +224,7 @@
             this.btnSearch.TabIndex = 16;
             this.btnSearch.Text = "Шукати";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseWaitCursor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClearSearch
@@ -230,14 +235,50 @@
             this.btnClearSearch.TabIndex = 17;
             this.btnClearSearch.Text = "Очистити";
             this.btnClearSearch.UseVisualStyleBackColor = true;
+            this.btnClearSearch.UseWaitCursor = true;
             this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(532, 50);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(116, 23);
+            this.btnFilter.TabIndex = 18;
+            this.btnFilter.Text = "Фільтр";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.UseWaitCursor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // btnClearFilter
+            // 
+            this.btnClearFilter.Location = new System.Drawing.Point(532, 94);
+            this.btnClearFilter.Name = "btnClearFilter";
+            this.btnClearFilter.Size = new System.Drawing.Size(116, 23);
+            this.btnClearFilter.TabIndex = 19;
+            this.btnClearFilter.Text = "Скинути фільтр";
+            this.btnClearFilter.UseVisualStyleBackColor = true;
+            this.btnClearFilter.UseWaitCursor = true;
+            this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
+            // 
+            // btnIngredients
+            // 
+            this.btnIngredients.Location = new System.Drawing.Point(691, 50);
+            this.btnIngredients.Name = "btnIngredients";
+            this.btnIngredients.Size = new System.Drawing.Size(106, 67);
+            this.btnIngredients.TabIndex = 20;
+            this.btnIngredients.Text = "Інгредієнти";
+            this.btnIngredients.UseVisualStyleBackColor = true;
+            this.btnIngredients.Click += new System.EventHandler(this.btnIngredients_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(800, 495);
+            this.ClientSize = new System.Drawing.Size(809, 495);
+            this.Controls.Add(this.btnIngredients);
+            this.Controls.Add(this.btnClearFilter);
+            this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.btnClearSearch);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
@@ -286,6 +327,9 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClearSearch;
+        private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.Button btnClearFilter;
+        private System.Windows.Forms.Button btnIngredients;
     }
 }
 
