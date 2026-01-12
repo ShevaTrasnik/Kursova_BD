@@ -362,5 +362,11 @@ namespace Kursova_BD
             }
             LoadProducts(orderBy);
         }
+
+        private void btnEmployees_Click(object sender, EventArgs e)
+        {
+            EmployeesForm form = new EmployeesForm();
+            form.ShowDialog();
+        }
     }
 }

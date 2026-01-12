@@ -95,6 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEditEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditEmployeeForm.Designer.cs">
+      <DependentUpon>AddEditEmployeeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddEditIngredientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,18 @@
     </Compile>
     <Compile Include="AddEditTechnologyStepForm.Designer.cs">
       <DependentUpon>AddEditTechnologyStepForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeesFilterForm.Designer.cs">
+      <DependentUpon>EmployeesFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeesForm.Designer.cs">
+      <DependentUpon>EmployeesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FilterIngredientsForm.cs">
       <SubType>Form</SubType>
@@ -151,6 +169,9 @@
     <Compile Include="RecipeViewForm.Designer.cs">
       <DependentUpon>RecipeViewForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddEditEmployeeForm.resx">
+      <DependentUpon>AddEditEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddEditIngredientForm.resx">
       <DependentUpon>AddEditIngredientForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +183,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditTechnologyStepForm.resx">
       <DependentUpon>AddEditTechnologyStepForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeesFilterForm.resx">
+      <DependentUpon>EmployeesFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeesForm.resx">
+      <DependentUpon>EmployeesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilterIngredientsForm.resx">
       <DependentUpon>FilterIngredientsForm.cs</DependentUpon>

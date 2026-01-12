@@ -51,6 +51,7 @@
             this.btnIngredients = new System.Windows.Forms.Button();
             this.cbSortProducts = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnEmployees = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -280,6 +281,7 @@
             this.cbSortProducts.Name = "cbSortProducts";
             this.cbSortProducts.Size = new System.Drawing.Size(121, 21);
             this.cbSortProducts.TabIndex = 21;
+            this.cbSortProducts.UseWaitCursor = true;
             this.cbSortProducts.SelectedIndexChanged += new System.EventHandler(this.cbSortProducts_SelectedIndexChanged);
             // 
             // label6
@@ -290,6 +292,18 @@
             this.label6.Size = new System.Drawing.Size(74, 13);
             this.label6.TabIndex = 22;
             this.label6.Text = "Сортувати за";
+            this.label6.UseWaitCursor = true;
+            // 
+            // btnEmployees
+            // 
+            this.btnEmployees.Location = new System.Drawing.Point(691, 136);
+            this.btnEmployees.Name = "btnEmployees";
+            this.btnEmployees.Size = new System.Drawing.Size(106, 67);
+            this.btnEmployees.TabIndex = 23;
+            this.btnEmployees.Text = "Працівники";
+            this.btnEmployees.UseVisualStyleBackColor = true;
+            this.btnEmployees.UseWaitCursor = true;
+            this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
             // MainForm
             // 
@@ -297,6 +311,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(809, 495);
+            this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbSortProducts);
             this.Controls.Add(this.btnIngredients);
@@ -355,6 +370,7 @@
         private System.Windows.Forms.Button btnIngredients;
         private System.Windows.Forms.ComboBox cbSortProducts;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnEmployees;
     }
 }
 
