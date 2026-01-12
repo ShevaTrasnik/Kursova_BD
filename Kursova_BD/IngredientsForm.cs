@@ -27,22 +27,34 @@ namespace Kursova_BD
         private void IngredientsForm_Load(object sender, EventArgs e)
         {
             LoadIngredients();
+            cbSort.Items.AddRange(new object[]
+            {
+                "Назва (А-Я)",
+                "Назва (Я-А)",
+                "Кількість менш. - більш.",
+                "Кількість більш. - менш.",
+                "Термін придатності ↑",
+                "Термін придатності ↓"
+            });
+            cbSort.SelectedIndex = 0;
+
+
         }
-        private void LoadIngredients()
+        private void LoadIngredients(string orderBy = "i.name ASC")
         {
-            string sql = @"
-        SELECT
-            i.ingredient_id,
-            i.name AS ingredient_name,
-            s.name AS supplier_name,
-            i.stock_qty,
-            i.unit,
-            i.shelf_life,
-            i.supplier_id
-        FROM ingredients i
-        LEFT JOIN suppliers s ON i.supplier_id = s.supplier_id
-        ORDER BY i.name;
-    ";
+            string sql = $@"
+                SELECT
+                    i.ingredient_id,
+                    i.name AS ingredient_name,
+                    s.name AS supplier_name,
+                    i.stock_qty,
+                    i.unit,
+                    i.shelf_life,
+                    i.supplier_id
+                FROM ingredients i
+                LEFT JOIN suppliers s ON i.supplier_id = s.supplier_id
+                ORDER BY {orderBy};
+            ";
 
             using (var conn = new MySqlConnection(_cs))
             {
@@ -51,8 +63,8 @@ namespace Kursova_BD
                 var adapter = new MySqlDataAdapter(sql, conn);
                 var table = new DataTable();
                 adapter.Fill(table);
-                dataGridIngredients.DataSource = table;
 
+                dataGridIngredients.DataSource = table;
                 dataGridIngredients.Columns["ingredient_id"].Visible = false;
                 dataGridIngredients.Columns["supplier_id"].Visible = false;
                 dataGridIngredients.Columns["ingredient_name"].HeaderText = "Назва";
@@ -60,8 +72,14 @@ namespace Kursova_BD
                 dataGridIngredients.Columns["stock_qty"].HeaderText = "Кількість";
                 dataGridIngredients.Columns["unit"].HeaderText = "Одиниця";
                 dataGridIngredients.Columns["shelf_life"].HeaderText = "Термін придатності";
+
+                foreach (DataGridViewColumn col in dataGridIngredients.Columns)
+                {
+                    col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
             }
         }
+
         private void dataGridIngredients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridIngredients.CurrentRow == null)
@@ -254,6 +272,37 @@ namespace Kursova_BD
                 if (!row.IsNewRow)
                     row.Visible = true;
             }
+        }
+        private void cbSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string orderBy;
+
+            switch (cbSort.SelectedIndex)
+            {
+                case 0:
+                    orderBy = "i.name ASC";
+                    break;
+                case 1:
+                    orderBy = "i.name DESC";
+                    break;
+                case 2:
+                    orderBy = "i.stock_qty ASC";
+                    break;
+                case 3:
+                    orderBy = "i.stock_qty DESC";
+                    break;
+                case 4:
+                    orderBy = "i.shelf_life ASC";
+                    break;
+                case 5:
+                    orderBy = "i.shelf_life DESC";
+                    break;
+                default:
+                    orderBy = "i.name ASC";
+                    break;
+            }
+
+            LoadIngredients(orderBy);
         }
     }
 }

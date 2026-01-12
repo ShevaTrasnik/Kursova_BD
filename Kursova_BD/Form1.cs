@@ -35,53 +35,54 @@ namespace Kursova_BD
             Cursor.Current = Cursors.Default;
             Application.UseWaitCursor = false;
             LoadProducts();
+            cbSortProducts.Items.AddRange(new object[]
+            {
+                "Назва (А-Я)",
+                "Назва (Я-А)",
+                "Категорія (А-Я)",
+                "Вага ↑",
+                "Вага ↓",
+                "Дата створення ↑",
+                "Дата створення ↓"
+            });
+            cbSortProducts.SelectedIndex = 0;
         }
 
-        private void LoadProducts(string searchText = "")
+        private void LoadProducts(string orderBy = "p.name ASC")
         {
-            try
-            {
-                string sql = @"
-            SELECT 
-                p.product_id,
-                p.name AS product_name,
-                c.name AS category_name,
-                p.category_id,
-                p.weight,
-                p.unit,
-                p.description,
-                p.created_at
-            FROM bakery_products p
-            JOIN categories c ON p.category_id = c.category_id
-            WHERE (@search = '' OR p.name LIKE @pattern)
-            ORDER BY p.name;
-        ";
+            string sql = $@"
+        SELECT
+            p.product_id,
+            p.name AS product_name,
+            c.name AS category_name,
+            p.weight,
+            p.unit,
+            p.description,
+            p.created_at
+        FROM bakery_products p
+        JOIN categories c ON p.category_id = c.category_id
+        ORDER BY {orderBy};
+    ";
 
-                using (var conn = new MySqlConnection(_cs))
+            using (var conn = new MySqlConnection(_cs))
+            {
+                conn.Open();
+
+                var adapter = new MySqlDataAdapter(sql, conn);
+                var table = new DataTable();
+                adapter.Fill(table);
+                dataGridProducts.DataSource = table;
+                dataGridProducts.Columns["product_id"].Visible = false;
+                dataGridProducts.Columns["product_name"].HeaderText = "Назва";
+                dataGridProducts.Columns["category_name"].HeaderText = "Категорія";
+                dataGridProducts.Columns["weight"].HeaderText = "Вага";
+                dataGridProducts.Columns["unit"].HeaderText = "Одиниця";
+                dataGridProducts.Columns["description"].HeaderText = "Опис продукту";
+                dataGridProducts.Columns["created_at"].HeaderText = "Створено";
+                foreach (DataGridViewColumn col in dataGridProducts.Columns)
                 {
-                    conn.Open();
-                    var cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@search", searchText);
-                    cmd.Parameters.AddWithValue("@pattern", "%" + searchText + "%");
-                    var adapter = new MySqlDataAdapter(cmd);
-                    var table = new DataTable();
-                    adapter.Fill(table);
-                    dataGridProducts.DataSource = table;
-
-                    dataGridProducts.Columns["product_id"].Visible = false;
-                    dataGridProducts.Columns["category_id"].Visible = false;
-                    dataGridProducts.Columns["description"].Visible = false;
-
-                    dataGridProducts.Columns["product_name"].HeaderText = "Назва";
-                    dataGridProducts.Columns["category_name"].HeaderText = "Категорія";
-                    dataGridProducts.Columns["weight"].HeaderText = "Вага";
-                    dataGridProducts.Columns["unit"].HeaderText = "Одиниця";
-                    dataGridProducts.Columns["created_at"].HeaderText = "Створено";
+                    col.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Помилка пошуку");
             }
         }
 
@@ -326,6 +327,40 @@ namespace Kursova_BD
         {
             var form = new IngredientsForm(_cs);
             form.ShowDialog();
+        }
+
+        private void cbSortProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string orderBy;
+
+            switch (cbSortProducts.SelectedIndex)
+            {
+                case 0:
+                    orderBy = "p.name ASC";
+                    break;
+                case 1:
+                    orderBy = "p.name DESC";
+                    break;
+                case 2:
+                    orderBy = "c.name ASC";
+                    break;
+                case 3:
+                    orderBy = "p.weight ASC";
+                    break;
+                case 4:
+                    orderBy = "p.weight DESC";
+                    break;
+                case 5:
+                    orderBy = "p.created_at ASC";
+                    break;
+                case 6:
+                    orderBy = "p.created_at DESC";
+                    break;
+                default:
+                    orderBy = "p.name ASC";
+                    break;
+            }
+            LoadProducts(orderBy);
         }
     }
 }

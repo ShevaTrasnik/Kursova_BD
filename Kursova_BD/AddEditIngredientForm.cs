@@ -18,6 +18,7 @@ namespace Kursova_BD
         public AddEditIngredientForm(string connectionString)
         {
             InitializeComponent();
+            dtpShelfLife.MinDate = DateTime.Today;
             _cs = connectionString;
             _ingredientId = null;
             LoadSuppliers();
@@ -29,7 +30,7 @@ namespace Kursova_BD
 
             _cs = connectionString;
             _ingredientId = ingredientId;
-
+            dtpShelfLife.MinDate = DateTime.Today;
             LoadSuppliers();
             LoadUnits();
             LoadIngredient();

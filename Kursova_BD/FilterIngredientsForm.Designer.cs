@@ -119,6 +119,7 @@
             this.Controls.Add(this.chkSupplier);
             this.Name = "FilterIngredientsForm";
             this.Text = "FilterIngredientsForm";
+            this.Load += new System.EventHandler(this.FilterIngredientsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

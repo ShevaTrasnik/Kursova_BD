@@ -166,6 +166,7 @@
             this.Controls.Add(this.txtName);
             this.Name = "AddEditProductForm";
             this.Text = "Додати\\Редагувати";
+            this.Load += new System.EventHandler(this.AddEditProductForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

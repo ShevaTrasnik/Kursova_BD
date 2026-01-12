@@ -17,14 +17,11 @@ namespace Kursova_BD
         public DateTime? ShelfLifeTo { get; private set; }
 
         private readonly string _cs;
-        public FilterIngredientsForm(
-    string connectionString,
-    int? supplierId,
-    DateTime? shelfLifeTo)
-        {
+        public FilterIngredientsForm(string connectionString, int? supplierId, DateTime? shelfLifeTo){
             InitializeComponent();
             _cs = connectionString;
             LoadSuppliers();
+            dtpShelfLifeTo.MinDate = DateTime.Today;
             if (supplierId.HasValue)
             {
                 chkSupplier.Checked = true;
@@ -84,6 +81,11 @@ namespace Kursova_BD
         private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void FilterIngredientsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

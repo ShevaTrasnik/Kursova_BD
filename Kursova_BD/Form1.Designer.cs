@@ -49,6 +49,8 @@
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnClearFilter = new System.Windows.Forms.Button();
             this.btnIngredients = new System.Windows.Forms.Button();
+            this.cbSortProducts = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,7 +212,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(203, 12);
+            this.txtSearch.Location = new System.Drawing.Point(359, 12);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(154, 20);
             this.txtSearch.TabIndex = 15;
@@ -218,7 +220,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(382, 9);
+            this.btnSearch.Location = new System.Drawing.Point(519, 10);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(99, 23);
             this.btnSearch.TabIndex = 16;
@@ -229,7 +231,7 @@
             // 
             // btnClearSearch
             // 
-            this.btnClearSearch.Location = new System.Drawing.Point(110, 9);
+            this.btnClearSearch.Location = new System.Drawing.Point(278, 9);
             this.btnClearSearch.Name = "btnClearSearch";
             this.btnClearSearch.Size = new System.Drawing.Size(75, 23);
             this.btnClearSearch.TabIndex = 17;
@@ -268,7 +270,26 @@
             this.btnIngredients.TabIndex = 20;
             this.btnIngredients.Text = "Інгредієнти";
             this.btnIngredients.UseVisualStyleBackColor = true;
+            this.btnIngredients.UseWaitCursor = true;
             this.btnIngredients.Click += new System.EventHandler(this.btnIngredients_Click);
+            // 
+            // cbSortProducts
+            // 
+            this.cbSortProducts.FormattingEnabled = true;
+            this.cbSortProducts.Location = new System.Drawing.Point(110, 11);
+            this.cbSortProducts.Name = "cbSortProducts";
+            this.cbSortProducts.Size = new System.Drawing.Size(121, 21);
+            this.cbSortProducts.TabIndex = 21;
+            this.cbSortProducts.SelectedIndexChanged += new System.EventHandler(this.cbSortProducts_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(30, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(74, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Сортувати за";
             // 
             // MainForm
             // 
@@ -276,6 +297,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(809, 495);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cbSortProducts);
             this.Controls.Add(this.btnIngredients);
             this.Controls.Add(this.btnClearFilter);
             this.Controls.Add(this.btnFilter);
@@ -330,6 +353,8 @@
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnClearFilter;
         private System.Windows.Forms.Button btnIngredients;
+        private System.Windows.Forms.ComboBox cbSortProducts;
+        private System.Windows.Forms.Label label6;
     }
 }
 

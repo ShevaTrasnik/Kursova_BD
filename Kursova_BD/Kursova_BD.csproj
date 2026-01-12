@@ -107,6 +107,18 @@
     <Compile Include="AddEditProductForm.Designer.cs">
       <DependentUpon>AddEditProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddEditRecipeIngredientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditRecipeIngredientForm.Designer.cs">
+      <DependentUpon>AddEditRecipeIngredientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditTechnologyStepForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditTechnologyStepForm.Designer.cs">
+      <DependentUpon>AddEditTechnologyStepForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FilterIngredientsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditProductForm.resx">
       <DependentUpon>AddEditProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditRecipeIngredientForm.resx">
+      <DependentUpon>AddEditRecipeIngredientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditTechnologyStepForm.resx">
+      <DependentUpon>AddEditTechnologyStepForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilterIngredientsForm.resx">
       <DependentUpon>FilterIngredientsForm.cs</DependentUpon>

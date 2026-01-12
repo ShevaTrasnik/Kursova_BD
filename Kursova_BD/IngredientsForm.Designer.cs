@@ -47,6 +47,8 @@
             this.dataGridIngredients = new System.Windows.Forms.DataGridView();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnClearFilter = new System.Windows.Forms.Button();
+            this.cbSort = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridIngredients)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,12 +229,32 @@
             this.btnClearFilter.UseVisualStyleBackColor = true;
             this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
             // 
+            // cbSort
+            // 
+            this.cbSort.FormattingEnabled = true;
+            this.cbSort.Location = new System.Drawing.Point(374, 311);
+            this.cbSort.Name = "cbSort";
+            this.cbSort.Size = new System.Drawing.Size(121, 21);
+            this.cbSort.TabIndex = 20;
+            this.cbSort.SelectedIndexChanged += new System.EventHandler(this.cbSort_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(291, 316);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Сортувати за:";
+            // 
             // IngredientsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(814, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cbSort);
             this.Controls.Add(this.btnClearFilter);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.dataGridIngredients);
@@ -282,5 +304,7 @@
         private System.Windows.Forms.DataGridView dataGridIngredients;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnClearFilter;
+        private System.Windows.Forms.ComboBox cbSort;
+        private System.Windows.Forms.Label label5;
     }
 }

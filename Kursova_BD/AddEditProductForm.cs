@@ -206,5 +206,10 @@ namespace Kursova_BD
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void AddEditProductForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
