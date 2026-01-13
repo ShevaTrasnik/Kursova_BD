@@ -52,6 +52,7 @@
             this.cbSortProducts = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnEmployees = new System.Windows.Forms.Button();
+            this.btnEquipment = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -305,12 +306,24 @@
             this.btnEmployees.UseWaitCursor = true;
             this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
+            // btnEquipment
+            // 
+            this.btnEquipment.Location = new System.Drawing.Point(691, 220);
+            this.btnEquipment.Name = "btnEquipment";
+            this.btnEquipment.Size = new System.Drawing.Size(106, 67);
+            this.btnEquipment.TabIndex = 24;
+            this.btnEquipment.Text = "Обладнання";
+            this.btnEquipment.UseVisualStyleBackColor = true;
+            this.btnEquipment.UseWaitCursor = true;
+            this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(809, 495);
+            this.Controls.Add(this.btnEquipment);
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbSortProducts);
@@ -371,6 +384,7 @@
         private System.Windows.Forms.ComboBox cbSortProducts;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnEmployees;
+        private System.Windows.Forms.Button btnEquipment;
     }
 }
 

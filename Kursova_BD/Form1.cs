@@ -368,5 +368,11 @@ namespace Kursova_BD
             EmployeesForm form = new EmployeesForm();
             form.ShowDialog();
         }
+
+        private void btnEquipment_Click(object sender, EventArgs e)
+        {
+            EquipmentForm form = new EquipmentForm();
+            form.ShowDialog();
+        }
     }
 }
