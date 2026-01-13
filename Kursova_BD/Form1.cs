@@ -374,5 +374,11 @@ namespace Kursova_BD
             EquipmentForm form = new EquipmentForm();
             form.ShowDialog();
         }
+
+        private void btnProductionBatches_Click(object sender, EventArgs e)
+        {
+            var form = new ProductionBatchesForm(_cs);
+            form.ShowDialog();
+        }
     }
 }

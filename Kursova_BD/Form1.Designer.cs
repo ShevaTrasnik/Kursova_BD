@@ -53,6 +53,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnEmployees = new System.Windows.Forms.Button();
             this.btnEquipment = new System.Windows.Forms.Button();
+            this.btnProductionBatches = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -317,12 +318,24 @@
             this.btnEquipment.UseWaitCursor = true;
             this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
             // 
+            // btnProductionBatches
+            // 
+            this.btnProductionBatches.Location = new System.Drawing.Point(691, 308);
+            this.btnProductionBatches.Name = "btnProductionBatches";
+            this.btnProductionBatches.Size = new System.Drawing.Size(106, 67);
+            this.btnProductionBatches.TabIndex = 25;
+            this.btnProductionBatches.Text = "Партії";
+            this.btnProductionBatches.UseVisualStyleBackColor = true;
+            this.btnProductionBatches.UseWaitCursor = true;
+            this.btnProductionBatches.Click += new System.EventHandler(this.btnProductionBatches_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(809, 495);
+            this.Controls.Add(this.btnProductionBatches);
             this.Controls.Add(this.btnEquipment);
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.label6);
@@ -385,6 +398,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnEmployees;
         private System.Windows.Forms.Button btnEquipment;
+        private System.Windows.Forms.Button btnProductionBatches;
     }
 }
 
