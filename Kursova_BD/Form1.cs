@@ -380,5 +380,11 @@ namespace Kursova_BD
             var form = new ProductionBatchesForm(_cs);
             form.ShowDialog();
         }
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            var form = new StatisticsForm(_cs);
+            form.ShowDialog();
+        }
     }
 }

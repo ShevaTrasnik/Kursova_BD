@@ -32,6 +32,7 @@
             this.btnAddBatch = new System.Windows.Forms.Button();
             this.btnEditBatch = new System.Windows.Forms.Button();
             this.btnDeleteBatch = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBatches)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,12 +74,23 @@
             this.btnDeleteBatch.UseVisualStyleBackColor = true;
             this.btnDeleteBatch.Click += new System.EventHandler(this.btnDeleteBatch_Click);
             // 
+            // btnReport
+            // 
+            this.btnReport.Location = new System.Drawing.Point(535, 270);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(106, 23);
+            this.btnReport.TabIndex = 4;
+            this.btnReport.Text = "Зробити звіт";
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            // 
             // ProductionBatchesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(656, 347);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnDeleteBatch);
             this.Controls.Add(this.btnEditBatch);
             this.Controls.Add(this.btnAddBatch);
@@ -97,5 +109,6 @@
         private System.Windows.Forms.Button btnAddBatch;
         private System.Windows.Forms.Button btnEditBatch;
         private System.Windows.Forms.Button btnDeleteBatch;
+        private System.Windows.Forms.Button btnReport;
     }
 }

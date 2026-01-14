@@ -107,6 +107,7 @@
             this.cmbShift.Name = "cmbShift";
             this.cmbShift.Size = new System.Drawing.Size(121, 21);
             this.cmbShift.TabIndex = 7;
+            this.cmbShift.SelectedIndexChanged += new System.EventHandler(this.cmbShift_SelectedIndexChanged);
             // 
             // dataGridViewEquipment
             // 

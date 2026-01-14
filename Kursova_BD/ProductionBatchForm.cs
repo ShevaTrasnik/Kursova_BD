@@ -447,5 +447,10 @@ namespace Kursova_BD
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void cmbShift_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
