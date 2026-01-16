@@ -115,8 +115,6 @@ namespace Kursova_BD
                 }
             }
         }
-
-
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
             if (dataGridProducts.CurrentRow == null)
@@ -129,56 +127,67 @@ namespace Kursova_BD
                 );
                 return;
             }
-
             string productName =
                 dataGridProducts.CurrentRow.Cells["product_name"].Value.ToString();
-
             var result = MessageBox.Show(
                 $"Ви дійсно бажаєте видалити продукт:\n\n{productName} ?",
                 "Підтвердження видалення",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
             );
-
             if (result != DialogResult.Yes)
                 return;
-
             int productId = Convert.ToInt32(
                 dataGridProducts.CurrentRow.Cells["product_id"].Value
             );
-
-            try
+            using (var conn = new MySqlConnection(_cs))
             {
-                using (var conn = new MySqlConnection(_cs))
+                conn.Open();
+                using (var tx = conn.BeginTransaction())
                 {
-                    conn.Open();
-
-                    var cmd = new MySqlCommand(
-                        "DELETE FROM bakery_products WHERE product_id = @id",
-                        conn);
-
-                    cmd.Parameters.AddWithValue("@id", productId);
-
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        var cmdRecipes = new MySqlCommand(
+                            "DELETE FROM recipes WHERE product_id = @id",
+                            conn, tx
+                        );
+                        cmdRecipes.Parameters.AddWithValue("@id", productId);
+                        cmdRecipes.ExecuteNonQuery();
+                        var cmdProductionItems = new MySqlCommand(
+                            "DELETE FROM production_items WHERE product_id = @id",
+                            conn, tx
+                        );
+                        cmdProductionItems.Parameters.AddWithValue("@id", productId);
+                        cmdProductionItems.ExecuteNonQuery();
+                        var cmdProduct = new MySqlCommand(
+                            "DELETE FROM bakery_products WHERE product_id = @id",
+                            conn, tx
+                        );
+                        cmdProduct.Parameters.AddWithValue("@id", productId);
+                        cmdProduct.ExecuteNonQuery();
+                        tx.Commit();
+                        LoadProducts();
+                        MessageBox.Show(
+                            "Продукт та всі пов’язані дані успішно видалено",
+                            "Готово",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                    }
+                    catch (Exception ex)
+                    {
+                        tx.Rollback();
+                        MessageBox.Show(
+                            "Помилка видалення:\n" + ex.Message,
+                            "Помилка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                    }
                 }
-                LoadProducts();
-                MessageBox.Show(
-                    "Продукт успішно видалено",
-                    "Готово",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            catch (MySqlException ex){
-                MessageBox.Show(
-                    "Неможливо видалити продукт, оскільки він використовується\n" +
-                    "у рецептах або виробничих даних.",
-                    "Помилка видалення",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
             }
         }
+
         private void btnViewRecipe_Click(object sender, EventArgs e)
         {
             int productId = Convert.ToInt32(

@@ -88,6 +88,88 @@ namespace Kursova_BD
             }
         }
 
+        private bool ValidateInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show(
+                    "Введіть назву інгредієнта",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                txtName.Focus();
+                return false;
+            }
+            if (cbSupplier.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Оберіть постачальника",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                cbSupplier.Focus();
+                return false;
+            }
+            if (cbUnit.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Оберіть одиницю виміру",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                cbUnit.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtStockQty.Text))
+            {
+                MessageBox.Show(
+                    "Введіть кількість на складі",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                txtStockQty.Focus();
+                return false;
+            }
+            if (!decimal.TryParse(txtStockQty.Text, out decimal qty))
+            {
+                MessageBox.Show(
+                    "Кількість має бути числовим значенням",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                txtStockQty.Focus();
+                return false;
+            }
+            if (qty < 0)
+            {
+                MessageBox.Show(
+                    "Кількість на складі не може бути від’ємною",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                txtStockQty.Focus();
+                return false;
+            }
+            if (dtpShelfLife.Value.Date < DateTime.Today)
+            {
+                MessageBox.Show(
+                    "Термін придатності не може бути в минулому",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                dtpShelfLife.Focus();
+                return false;
+            }
+
+            return true;
+        }
 
         private void AddEditIngredientForm_Load(object sender, EventArgs e)
         {
@@ -96,6 +178,8 @@ namespace Kursova_BD
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!ValidateInput())
+                return;
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 MessageBox.Show("Введіть назву інгредієнта");

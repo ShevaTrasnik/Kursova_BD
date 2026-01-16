@@ -1,13 +1,14 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Kursova_BD
 {
@@ -76,6 +77,61 @@ namespace Kursova_BD
                 }
             }
         }
+        private bool ValidateInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtFullName.Text))
+            {
+                MessageBox.Show("Введіть ПІБ працівника", "Помилка валідації");
+                txtFullName.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPosition.Text))
+            {
+                MessageBox.Show("Введіть посаду працівника", "Помилка валідації");
+                txtPosition.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            {
+                MessageBox.Show("Введіть номер телефону", "Помилка валідації");
+                txtPhone.Focus();
+                return false;
+            }
+            string phone = txtPhone.Text.Trim();
+
+            if (!Regex.IsMatch(phone, @"^\+\d{10,15}$"))
+            {
+                MessageBox.Show(
+                    "Номер телефону має бути у форматі +380XXXXXXXXX",
+                    "Помилка валідації"
+                );
+                txtPhone.Focus();
+                return false;
+            }
+            if (dtpHireDate.Value.Date > DateTime.Today)
+            {
+                MessageBox.Show(
+                    "Дата прийняття не може бути в майбутньому",
+                    "Помилка валідації"
+                );
+                dtpHireDate.Focus();
+                return false;
+            }
+            if (dtpFiredDate.Enabled)
+            {
+                if (dtpFiredDate.Value.Date < dtpHireDate.Value.Date)
+                {
+                    MessageBox.Show(
+                        "Дата звільнення не може бути раніше дати прийняття",
+                        "Помилка валідації"
+                    );
+                    dtpFiredDate.Focus();
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         private void AddEditEmployeeForm_Load(object sender, EventArgs e)
         {
@@ -84,6 +140,8 @@ namespace Kursova_BD
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!ValidateInput())
+                return;
             if (string.IsNullOrWhiteSpace(txtFullName.Text))
             {
                 MessageBox.Show("Поле ПІБ є обов'язковим.", "Помилка",

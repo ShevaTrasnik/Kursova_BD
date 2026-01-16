@@ -75,6 +75,45 @@ namespace Kursova_BD
                 }
             }
         }
+        private bool ValidateInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show(
+                    "Введіть назву обладнання",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                txtName.Focus();
+                return false;
+            }
+            if (cmbStatus.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Оберіть стан обладнання",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                cmbStatus.Focus();
+                return false;
+            }
+            if (dtpServiceDate.Value.Date > DateTime.Today)
+            {
+                MessageBox.Show(
+                    "Дата обслуговування не може бути в майбутньому",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                dtpServiceDate.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
         private void AddEditEquipmentForm_Load(object sender, EventArgs e)
         {
 
@@ -82,6 +121,8 @@ namespace Kursova_BD
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!ValidateInput())
+                return;
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 MessageBox.Show("Вкажіть назву обладнання");

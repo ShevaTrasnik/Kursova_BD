@@ -39,12 +39,41 @@ namespace Kursova_BD
                 cmbProduct.SelectedIndex = -1;
             }
         }
+        private bool ValidateInput()
+        {
+            if (cmbProduct.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Оберіть виріб",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                cmbProduct.Focus();
+                return false;
+            }
+            if (nudQuantity.Value <= 0)
+            {
+                MessageBox.Show(
+                    "Кількість має бути більшою за нуль",
+                    "Помилка валідації",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                nudQuantity.Focus();
+                return false;
+            }
+
+            return true;
+        }
         private void AddBatchItemForm_Load(object sender, EventArgs e)
         {
 
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (!ValidateInput())
+                return;
             if (cmbProduct.SelectedIndex < 0)
             {
                 MessageBox.Show("Оберіть виріб");

@@ -161,7 +161,7 @@
             this.Controls.Add(this.txtFullName);
             this.Controls.Add(this.label1);
             this.Name = "AddEditEmployeeForm";
-            this.Text = "AddEditEmployeeForm";
+            this.Text = "Додати працівника";
             this.Load += new System.EventHandler(this.AddEditEmployeeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

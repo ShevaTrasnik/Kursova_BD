@@ -162,7 +162,7 @@
             this.Controls.Add(this.cmbName);
             this.Controls.Add(this.chkName);
             this.Name = "EmployeesFilterForm";
-            this.Text = "EmployeesFilterForm";
+            this.Text = "Фільтр";
             this.Load += new System.EventHandler(this.EmployeesFilterForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

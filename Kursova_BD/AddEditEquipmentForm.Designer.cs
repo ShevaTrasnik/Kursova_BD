@@ -142,7 +142,7 @@
             this.Controls.Add(this.txtType);
             this.Controls.Add(this.txtName);
             this.Name = "AddEditEquipmentForm";
-            this.Text = "AddEditEquipmentForm";
+            this.Text = "Додати обладнання";
             this.Load += new System.EventHandler(this.AddEditEquipmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

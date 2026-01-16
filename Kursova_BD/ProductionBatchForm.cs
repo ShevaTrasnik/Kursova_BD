@@ -196,7 +196,6 @@ namespace Kursova_BD
         {
             equipmentTable = new DataTable();
 
-            // ВАЖЛИВО: зберігаємо equipment_id, щоб не шукати по назві
             equipmentTable.Columns.Add("equipment_id", typeof(int));
             equipmentTable.Columns.Add("equipment_name", typeof(string));
             equipmentTable.Columns.Add("start_time", typeof(DateTime));
@@ -214,6 +213,7 @@ namespace Kursova_BD
             dataGridViewEquipment.AllowUserToAddRows = false;
             dataGridViewEquipment.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
+
         private void ProductionBatchForm_Load(object sender, EventArgs e)
         {
 
